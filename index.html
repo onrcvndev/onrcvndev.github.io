@@ -3,14 +3,119 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>onrcvndev</title>
-<style>body { font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif; max-width: 760px; margin: 0 auto; padding: 24px 16px; line-height: 1.6; color: #222; background: #fff; }</style>
+<title>Swivelock: Arrow Escape · onrcvndev</title>
+<meta name="description" content="Swivelock: Arrow Escape — a tap-away arrow puzzle with spinning and locked arrows. Free on Google Play.">
+<meta property="og:title" content="Swivelock: Arrow Escape">
+<meta property="og:description" content="Slide every arrow off the board — but beware spinning and locked arrows!">
+<meta property="og:image" content="https://onrcvndev.github.io/swivelock/img/og.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="swivelock/img/icon.png">
+<style>
+  :root { --blue: #2f6fe0; --blue2: #3fb6cf; --orange: #f2a33a; --ink: #1f2a37; --muted: #5b6878; --card: #fff; --bg: #f4f7fb; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.6; }
+  a { color: var(--blue); }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+  header { background: linear-gradient(160deg, var(--blue2), var(--blue)); color: #fff; padding: 20px 0 56px; }
+  .top { display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
+  .lang button { background: rgba(255,255,255,.18); color: #fff; border: 0; border-radius: 6px; padding: 4px 10px; font: inherit; font-size: 14px; cursor: pointer; }
+  .lang button[aria-pressed="true"] { background: #fff; color: var(--blue); }
+  .hero { display: flex; gap: 28px; align-items: center; margin-top: 40px; }
+  .hero img { width: 128px; height: 128px; border-radius: 28px; box-shadow: 0 10px 30px rgba(0,0,0,.25); flex: none; }
+  h1 { margin: 0; font-size: clamp(30px, 6vw, 46px); line-height: 1.1; letter-spacing: .5px; }
+  h1 span { color: #ffd27a; }
+  .tag { margin: 10px 0 20px; font-size: 18px; opacity: .95; }
+  .btn { display: inline-block; background: #fff; color: var(--blue); text-decoration: none; font-weight: 700; padding: 12px 22px; border-radius: 12px; box-shadow: 0 4px 0 rgba(0,0,0,.15); }
+  .btn:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,.15); }
+  section { padding: 44px 0 0; }
+  h2 { font-size: 24px; margin: 0 0 16px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .card { background: var(--card); border-radius: 16px; padding: 18px 20px; box-shadow: 0 2px 10px rgba(20,40,80,.06); }
+  .card b { display: block; font-size: 17px; margin-bottom: 4px; }
+  .card p { margin: 0; color: var(--muted); }
+  .shots { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 10px; scroll-snap-type: x mandatory; }
+  .shots img { height: 420px; max-height: 70vh; border-radius: 18px; scroll-snap-align: start; flex: none; box-shadow: 0 4px 16px rgba(20,40,80,.12); }
+  footer { margin-top: 56px; padding: 24px 0 40px; border-top: 1px solid #dde3ec; color: var(--muted); font-size: 15px; }
+  footer a { margin-right: 16px; }
+  @media (max-width: 560px) {
+    .hero { flex-direction: column; text-align: center; gap: 18px; margin-top: 28px; }
+    .hero img { width: 104px; height: 104px; border-radius: 24px; }
+    .shots img { height: 360px; }
+  }
+</style>
 </head>
 <body>
-<h1>onrcvndev</h1>
-<p>Indie mobile games.</p>
-<h2>Swivelock: Arrow Escape</h2>
-<p>A tap-away arrow puzzle with rotating and locked arrows. · <a href="swivelock/privacy.html">Privacy Policy</a></p>
-<p>Contact: <a href="mailto:onrcvndev@gmail.com">onrcvndev@gmail.com</a></p>
+<header>
+  <div class="wrap">
+    <div class="top">
+      <span>onrcvndev</span>
+      <span class="lang"><button data-set="en" aria-pressed="true">EN</button> <button data-set="tr" aria-pressed="false">TR</button></span>
+    </div>
+    <div class="hero">
+      <img src="swivelock/img/icon.png" alt="Swivelock app icon" width="128" height="128">
+      <div>
+        <h1>SWIVE<span>LOCK</span>: Arrow Escape</h1>
+        <p class="tag" data-en="Slide every arrow off the board — but beware spinning and locked arrows!" data-tr="Tüm okları tahtadan kaydır — ama dönen ve kilitli oklara dikkat et!"></p>
+        <a class="btn" href="https://play.google.com/store/apps/details?id=com.onrcvndev.swivelock" data-en="Get it on Google Play" data-tr="Google Play'den indir"></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section>
+    <h2 data-en="How to play" data-tr="Nasıl oynanır"></h2>
+    <div class="grid">
+      <div class="card"><b data-en="👆 Tap to slide" data-tr="👆 Dokun ve kaydır"></b><p data-en="Tap an arrow and it slides away — if its path is clear. Hit another arrow and you lose a heart." data-tr="Bir oka dokun, yolu boşsa kayıp gitsin. Başka bir oka çarparsa bir can kaybedersin."></p></div>
+      <div class="card"><b data-en="🔄 Spinning arrows" data-tr="🔄 Dönen oklar"></b><p data-en="They turn 90° every time another arrow leaves. Stuck now? Two moves later it may be your way out." data-tr="Başka bir ok her çıktığında 90° döner. Şimdi sıkışan ok, iki hamle sonra kurtuluş yolun olabilir."></p></div>
+      <div class="card"><b data-en="🔒 Locked arrows" data-tr="🔒 Kilitli oklar"></b><p data-en="They only open after enough other arrows have escaped. Plan the order, then go!" data-tr="Yeterince ok kaçmadan açılmaz. Sırayı planla, sonra harekete geç!"></p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-en="Screenshots" data-tr="Ekran görüntüleri"></h2>
+    <div class="shots">
+      <img src="swivelock/img/shot-01.jpg" alt="Swivelock screenshot 1" loading="lazy">
+      <img src="swivelock/img/shot-02.jpg" alt="Swivelock screenshot 2" loading="lazy">
+      <img src="swivelock/img/shot-03.jpg" alt="Swivelock screenshot 3" loading="lazy">
+      <img src="swivelock/img/shot-04.jpg" alt="Swivelock screenshot 4" loading="lazy">
+      <img src="swivelock/img/shot-05.jpg" alt="Swivelock screenshot 5" loading="lazy">
+    </div>
+  </section>
+
+  <section>
+    <h2 data-en="Features" data-tr="Özellikler"></h2>
+    <div class="grid">
+      <div class="card"><b data-en="100+ levels" data-tr="100+ bölüm"></b><p data-en="Easy to learn, seriously tricky later — with a boss level every 10 levels." data-tr="Öğrenmesi kolay, sonra gerçekten zorlaşıyor — her 10 bölümde bir boss seviyesi."></p></div>
+      <div class="card"><b data-en="Beat the clock" data-tr="Süreye karşı yarış"></b><p data-en="Finish fast for bonus coins and three stars. Undo, Hint or Hammer when you're stuck." data-tr="Hızlı bitir, bonus altın ve üç yıldız kazan. Takılınca geri al, ipucu ya da çekiç."></p></div>
+      <div class="card"><b data-en="Leaderboards" data-tr="Sıralama"></b><p data-en="Weekly and all-time rankings. Link Google Play to keep your progress on any device." data-tr="Haftalık ve tüm zamanlar sıralaması. Google Play ile bağla, ilerlemen her cihazda korunsun."></p></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>
+      <a href="swivelock/privacy.html" data-en="Privacy Policy" data-tr="Gizlilik Politikası"></a>
+      <a href="swivelock/privacy.html#delete" data-en="Delete account" data-tr="Hesabı sil"></a>
+      <a href="mailto:onrcvndev@gmail.com">onrcvndev@gmail.com</a>
+    </p>
+    <p>© 2026 onrcvndev</p>
+  </div>
+</footer>
+
+<script>
+  function setLang(l) {
+    document.documentElement.lang = l;
+    document.querySelectorAll('[data-en]').forEach(function (el) { el.textContent = el.getAttribute('data-' + l); });
+    document.querySelectorAll('.lang button').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.set === l); });
+    var del = document.querySelector('a[href$="#delete"], a[href$="#sil"]');
+    if (del) del.href = 'swivelock/privacy.html#' + (l === 'tr' ? 'sil' : 'delete');
+    try { localStorage.setItem('lang', l); } catch (e) {}
+  }
+  var saved = null; try { saved = localStorage.getItem('lang'); } catch (e) {}
+  setLang(saved || ((navigator.language || '').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en'));
+  document.querySelectorAll('.lang button').forEach(function (b) { b.onclick = function () { setLang(b.dataset.set); }; });
+</script>
 </body>
 </html>
